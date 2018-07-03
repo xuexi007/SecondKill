@@ -3,6 +3,8 @@ package com.zhangyong.service.impl;
 import com.zhangyong.domain.User;
 import com.zhangyong.persistence.UserDao;
 import com.zhangyong.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,15 +18,20 @@ import org.springframework.transaction.annotation.Transactional;
  * @version 1.0.0
  * @Date 2018/6/26 7:41
  */
+
 @Service
 public class UserServiceImpl implements UserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     UserDao userDao;
 
     @Override
     public User selectUserById(int id) {
-        return userDao.getUserById(id);
+        User usr = userDao.getUserById(id);
+        logger.info("根据ID值所查出user信息为:" + usr.toString());
+        return usr;
     }
 
     @Override
