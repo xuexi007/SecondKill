@@ -2,10 +2,10 @@ package com.zhangyong;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 
 /**
  * <p>ClassName:SecondKillApplication</p>
@@ -18,8 +18,11 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @MapperScan(value = "com.zhangyong.persistence")
+@EnableTransactionManagement
 public class SecondKillApplication {
     public static void main(String[] args) {
         SpringApplication.run(SecondKillApplication.class, args);
     }
 }
+
+

@@ -1,10 +1,7 @@
 package com.zhangyong.persistence;
 
 import com.zhangyong.domain.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 /**
  * <p>ClassName:</p>
@@ -22,4 +19,7 @@ public interface UserDao {
 
     @Insert("insert into user(id,name) values(#{id},#{name}) ")
     public int insert(User user);
+
+    @Delete("delete from user where id = #{id}")
+    public boolean deleteUserById(@Param("id") int id);
 }

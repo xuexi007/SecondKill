@@ -1,18 +1,18 @@
 package com.zhangyong.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.zhangyong.domain.User;
 import com.zhangyong.result.Result;
 import com.zhangyong.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * <p>ClassName:</p>
+ * <p>ClassName: </p>
  * <p>Description: </p>
- * <p>Company: http://www.shopin.net</p>
+ * <p>Company: http://www.shopin.net </p>
  *
  * @author zhangyong@shopin.cn
  * @version 1.0.0
@@ -32,6 +32,12 @@ public class UserController {
     @RequestMapping("/tx")
     @ResponseBody
     public Result<Boolean> insertUser() {
-        return new Result<Boolean>(userService.tx());
+        return new Result<Boolean>(userService.insertTx());
+    }
+
+    @RequestMapping("/delete/{id}")
+    @ResponseBody
+    public Result<Boolean> deleteUserById(@PathVariable int id) {
+        return new Result<Boolean>(userService.deleteUserById(id));
     }
 }

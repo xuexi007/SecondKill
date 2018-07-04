@@ -14,5 +14,7 @@ import com.zhangyong.domain.User;
 public interface UserService {
     public User selectUserById(int id);
 
-    public boolean tx();
+    public boolean insertTx();
+
+    public boolean deleteUserById(int id);
 }
