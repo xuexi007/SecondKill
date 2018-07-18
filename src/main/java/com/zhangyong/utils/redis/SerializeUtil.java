@@ -11,7 +11,7 @@
  * Copyright (c) 2016, TNT All Rights Reserved.
 */
 
-package com.zhangyong.utils;
+package com.zhangyong.utils.redis;
 
 import org.springframework.stereotype.Component;
 

@@ -137,6 +137,30 @@
         </dependency>
 
     </dependencies>
+    <!-- 开发组约定三套环境配置 begin -->
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <runtime.env>src/main/resources/profile-active/local</runtime.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <runtime.env>src/main/resources/profile-active/dev</runtime.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <runtime.env>src/main/resources/profile-active/prod</runtime.env>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <resources>
             <resource>

@@ -1,4 +1,4 @@
-package com.zhangyong;
+package com.zhangyong.config.druid;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Value;

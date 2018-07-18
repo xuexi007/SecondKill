@@ -1,6 +1,6 @@
 package com.zhangyong;
 
-import com.zhangyong.utils.ShopinRedisTemplate;
+import com.zhangyong.utils.redis.ShopinRedisTemplate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

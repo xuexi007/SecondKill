@@ -1,4 +1,4 @@
-package com.zhangyong.config;
+package com.zhangyong.config.transaction;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.aop.Advisor;
@@ -7,7 +7,7 @@ import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.interceptor.*;
 
@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * <p>ClassName: OMS事务配置 </p>
+ * <p>ClassName: 事务配置 </p>
  * <p>Description: </p>
  * <p>Company: http://www.shopin.net</p>
  *
@@ -23,6 +23,7 @@ import java.util.HashMap;
  * @version 1.0.0
  * @Date 2018/7/4 15:14
  */
+
 @Aspect
 @Configuration
 public class TransactionConfig {
@@ -30,7 +31,7 @@ public class TransactionConfig {
     private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.zhangyong.service.*.*(..))";
 
     @Autowired
-    private PlatformTransactionManager transactionManager;
+    private DataSourceTransactionManager transactionManager;
 
     @Bean(name = "txAdvice")
     public TransactionInterceptor txAdvice() {
@@ -47,7 +48,7 @@ public class TransactionConfig {
         HashMap<String, TransactionAttribute> txMap = new HashMap<>();
         txMap.put("get*", readOnlyTx);
         txMap.put("select*", readOnlyTx);
-        txMap.put("insert*", readOnlyTx);
+        txMap.put("insert*", requiredTx);
         txMap.put("save*", requiredTx);
         txMap.put("create*", requiredTx);
         txMap.put("modify*", requiredTx);
@@ -62,6 +63,7 @@ public class TransactionConfig {
         txMap.put("des*", requiredTx);
         txMap.put("reg*", requiredTx);
         txMap.put("confirm*", requiredTx);
+        txMap.put("*", readOnlyTx);
         source.setNameMap(txMap);
         TransactionInterceptor txAdvice = new TransactionInterceptor(transactionManager, source);
         return txAdvice;

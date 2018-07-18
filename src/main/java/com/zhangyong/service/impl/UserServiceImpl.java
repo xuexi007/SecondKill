@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
  * @version 1.0.0
  * @Date 2018/6/26 7:41
  */
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -29,7 +30,6 @@ public class UserServiceImpl implements UserService {
     public User selectUserById(int id) {
         User usr = userDao.getUserById(id);
         logger.info("根据ID值所查出user信息为:" + usr.toString());
-        int a = 1 / 0;
         return usr;
     }
 
@@ -39,8 +39,6 @@ public class UserServiceImpl implements UserService {
         u1.setId(2);
         u1.setName("张XX");
         userDao.insert(u1);
-
-//        int a = 2 / 0;
         User u2 = new User();
         u2.setId(1);
         u2.setName("招XX");
@@ -51,7 +49,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteUserById(int id) {
         boolean b = userDao.deleteUserById(id);
-        int i = 2 / 0;
         return b;
     }
 }
