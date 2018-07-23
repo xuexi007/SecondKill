@@ -13,6 +13,6 @@ public class IndexController {
     @RequestMapping("/index")
     @ResponseBody
     public String index() {
-        return "index,Shopin,zhang";
+        return "index";
     }
 }
