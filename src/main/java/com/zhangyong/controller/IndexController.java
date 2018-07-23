@@ -1,6 +1,4 @@
 package com.zhangyong.controller;
-
-import com.zhangyong.utils.LoadProperties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +13,6 @@ public class IndexController {
     @RequestMapping("/index")
     @ResponseBody
     public String index() {
-        String in = LoadProperties.readValue("mm_url");
-        return in;
+        return "index,Shopin,zhang";
     }
 }

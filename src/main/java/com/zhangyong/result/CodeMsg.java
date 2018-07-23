@@ -10,6 +10,7 @@ package com.zhangyong.result;
  * @Date 2018/6/26 7:31
  */
 public class CodeMsg {
+
     private int code;
     private String msg;
 

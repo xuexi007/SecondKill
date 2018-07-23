@@ -23,7 +23,6 @@ import java.util.HashMap;
  * @version 1.0.0
  * @Date 2018/7/4 15:14
  */
-
 @Aspect
 @Configuration
 public class TransactionConfig {

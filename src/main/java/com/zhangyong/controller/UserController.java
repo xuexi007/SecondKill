@@ -1,7 +1,7 @@
 package com.zhangyong.controller;
 
 import com.zhangyong.domain.User;
-import com.zhangyong.result.Result;
+import com.zhangyong.result.ResultBean;
 import com.zhangyong.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,19 +25,19 @@ public class UserController {
 
     @RequestMapping("/hello")
     @ResponseBody
-    public Result<User> selectUserById() {
-        return new Result<User>(userService.selectUserById(1));
+    public ResultBean<User> selectUserById() {
+        return new ResultBean<User>(userService.selectUserById(1));
     }
 
     @RequestMapping("/tx")
     @ResponseBody
-    public Result<Boolean> insertUser() {
-        return new Result<Boolean>(userService.insertTx());
+    public ResultBean<Boolean> insertUser() {
+        return new ResultBean<Boolean>(userService.insertTx());
     }
 
     @RequestMapping("/delete/{id}")
     @ResponseBody
-    public Result<Boolean> deleteUserById(@PathVariable int id) {
-        return new Result<Boolean>(userService.deleteUserById(id));
+    public ResultBean<Boolean> deleteUserById(@PathVariable int id) {
+        return new ResultBean<Boolean>(userService.deleteUserById(id));
     }
 }
