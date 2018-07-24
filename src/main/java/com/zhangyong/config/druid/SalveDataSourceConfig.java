@@ -1,11 +1,16 @@
 package com.zhangyong.config.druid;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -13,24 +18,27 @@ import java.util.Properties;
 
 /**
  * <p>ClassName:  </p>
- * <p>Description:Druid数据源配置信息 </p>
+ * <p>Description: </p>
  * <p>Company: http://www.shopin.net</p>
  *
  * @author zhangyong@shopin.cn
  * @version 1.0.0
- * @date 2018/7/16 15:45
+ * @date 2018/7/24 19:35
  */
 @Configuration
-public class DruidConfiguration {
+@MapperScan(basePackages = SalveDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "salveSqlSessionFactory")
+public class SalveDataSourceConfig {
 
-    @Value("${spring.datasource.url}")
-    private String url;
+    static final String PACKAGE = "com.zhangyong.persistence.student";
 
-    @Value("${spring.datasource.username}")
-    private String username;
+    @Value("${spring.datasource.salve.url}")
+    private String salveUrl;
 
-    @Value("${spring.datasource.password}")
-    private String password;
+    @Value("${spring.datasource.salve.username}")
+    private String salveUsername;
+
+    @Value("${spring.datasource.salve.password}")
+    private String salvePassword;
 
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
@@ -68,13 +76,12 @@ public class DruidConfiguration {
     @Value("${spring.datasource.connectionProperties}")
     private Properties connectionProperties;
 
-    @Bean
-    @Primary
-    public DataSource dataSource() {
+    @Bean(name = "salveDataSource")
+    public DataSource getSalveDataSource() {
         DruidDataSource druidDataSource = new DruidDataSource();
-        druidDataSource.setUrl(url);
-        druidDataSource.setUsername(username);
-        druidDataSource.setPassword(password);
+        druidDataSource.setUrl(this.salveUrl);
+        druidDataSource.setUsername(salveUsername);
+        druidDataSource.setPassword(salvePassword);
         druidDataSource.setDriverClassName(driverClassName);
         // druid配置
         druidDataSource.setInitialSize(initialSize);
@@ -86,7 +93,6 @@ public class DruidConfiguration {
         druidDataSource.setTestWhileIdle(testWhileIdle);
         druidDataSource.setTestOnBorrow(testOnBorrow);
         druidDataSource.setTestOnReturn(testOnReturn);
-
         try {
             druidDataSource.setFilters(filters);
         } catch (SQLException e) {
@@ -95,4 +101,30 @@ public class DruidConfiguration {
         druidDataSource.setConnectProperties(connectionProperties);
         return druidDataSource;
     }
+
+    @Bean(name = "salveSqlSessionFactory")
+    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier("salveDataSource") DataSource dataSource) {
+        SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+        sessionFactoryBean.setDataSource(dataSource);
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        try {
+            sessionFactoryBean.setMapperLocations(resolver.getResources("com/zhangyong/persistence/student/*.xml"));
+            return sessionFactoryBean.getObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Bean(name = "salveSqlSessionTemplate")
+    public SqlSessionTemplate oggSqlSessionTemplate(SqlSessionFactory salveSqlSessionFactory) {
+        return new SqlSessionTemplate(salveSqlSessionFactory);
+    }
+
+    @Bean(name = "salveTransactionManager")
+    public DataSourceTransactionManager annotationDrivenTransactionManager() {
+        return new DataSourceTransactionManager(getSalveDataSource());
+    }
+
+
 }

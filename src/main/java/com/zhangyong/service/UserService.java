@@ -2,6 +2,8 @@ package com.zhangyong.service;
 
 import com.zhangyong.domain.User;
 
+import java.util.List;
+
 /**
  * <p>ClassName:</p>
  * <p>Description: </p>
@@ -13,6 +15,8 @@ import com.zhangyong.domain.User;
  */
 public interface UserService {
     public User selectUserById(int id);
+
+    public List<User> selectUserList();
 
     public boolean insertTx();
 

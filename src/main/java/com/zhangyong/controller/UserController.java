@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * <p>ClassName: </p>
  * <p>Description: </p>
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class UserController {
+
     @Autowired
     UserService userService;
 
@@ -40,4 +43,11 @@ public class UserController {
     public ResultBean<Boolean> deleteUserById(@PathVariable int id) {
         return new ResultBean<Boolean>(userService.deleteUserById(id));
     }
+
+    @RequestMapping("selectUserList")
+    @ResponseBody
+    public ResultBean<List<User>> selectUserList() {
+        return new ResultBean<List<User>>(userService.selectUserList());
+    }
+
 }
