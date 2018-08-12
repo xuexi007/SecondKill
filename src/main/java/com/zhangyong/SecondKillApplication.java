@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @version 1.0
  * @date 2018/6/23 17:58
  */
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@SpringBootApplication
 @ServletComponentScan
 @MapperScan(value = "com.zhangyong.persistence")
 @EnableWebMvc

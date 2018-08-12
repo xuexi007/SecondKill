@@ -34,7 +34,7 @@ public class DataSourceConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(DataSourceConfig.class);
 
-    static final String PACKAGE = "com.zhangyong.persistence.user";
+    static final String PACKAGE = "com.zhangyong.persistence";
 
     @Value("${spring.datasource.url}")
     private String url;
@@ -93,7 +93,7 @@ public class DataSourceConfig {
         druidDataSource.setInitialSize(initialSize);
         druidDataSource.setMaxActive(maxActive);
         druidDataSource.setRemoveAbandoned(removeAbandoned);
-        druidDataSource.setRemoveAbandonedTimeoutMillis(removeAbandonedTimeoutMillis);
+        druidDataSource.setRemoveAbandonedTimeout(removeAbandonedTimeoutMillis);
         druidDataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
         druidDataSource.setValidationQuery(validationQuery);
         druidDataSource.setTestWhileIdle(testWhileIdle);
@@ -115,7 +115,7 @@ public class DataSourceConfig {
         sessionFactoryBean.setDataSource(dataSource);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
-            sessionFactoryBean.setMapperLocations(resolver.getResources("com/zhangyong/persistence/user/*.xml"));
+            sessionFactoryBean.setMapperLocations(resolver.getResources("com/zhangyong/persistence/*.xml"));
             return sessionFactoryBean.getObject();
         } catch (Exception e) {
             e.printStackTrace();

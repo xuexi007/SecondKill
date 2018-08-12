@@ -108,6 +108,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
+
         <!--配置springboot-redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,7 +1,7 @@
 package com.zhangyong.service.impl;
 
 import com.zhangyong.domain.User;
-import com.zhangyong.persistence.user.UserMapper;
+import com.zhangyong.persistence.UserMapper;
 import com.zhangyong.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

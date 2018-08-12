@@ -1,4 +1,4 @@
-package com.zhangyong.persistence.user;
+package com.zhangyong.persistence;
 
 import com.zhangyong.domain.User;
 import org.apache.ibatis.annotations.*;
