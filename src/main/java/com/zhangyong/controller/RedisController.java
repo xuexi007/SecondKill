@@ -26,10 +26,17 @@ public class RedisController {
     @Autowired
     RedisService redisService;
 
+    @RequestMapping("/redis/set")
+    @ResponseBody
+    public ResultBean<Boolean> redisSet() {
+        boolean set = redisService.set("1", "zhangyong");
+        return new ResultBean<>(set);
+    }
+
     @RequestMapping("/redis/get")
     @ResponseBody
-    public ResultBean<Long> redisGet() {
-        Long key1 = redisService.get("key1", Long.class);
-        return new ResultBean<Long>(key1);
+    public ResultBean<String> redisGet() {
+        String key1 = redisService.get("1", String.class);
+        return new ResultBean<String>(key1);
     }
 }

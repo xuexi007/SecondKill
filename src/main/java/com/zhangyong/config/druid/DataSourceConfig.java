@@ -57,8 +57,8 @@ public class DataSourceConfig {
     @Value("${spring.datasource.removeAbandoned}")
     private boolean removeAbandoned;
 
-    @Value("${spring.datasource.removeAbandonedTimeoutMillis}")
-    private int removeAbandonedTimeoutMillis;
+    @Value("${spring.datasource.removeAbandonedTimeout}")
+    private int removeAbandonedTimeout;
 
     @Value("${spring.datasource.timeBetweenEvictionRunsMillis}")
     private int timeBetweenEvictionRunsMillis;
@@ -93,7 +93,7 @@ public class DataSourceConfig {
         druidDataSource.setInitialSize(initialSize);
         druidDataSource.setMaxActive(maxActive);
         druidDataSource.setRemoveAbandoned(removeAbandoned);
-        druidDataSource.setRemoveAbandonedTimeout(removeAbandonedTimeoutMillis);
+        druidDataSource.setRemoveAbandonedTimeout(removeAbandonedTimeout);
         druidDataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
         druidDataSource.setValidationQuery(validationQuery);
         druidDataSource.setTestWhileIdle(testWhileIdle);
