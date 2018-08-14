@@ -42,7 +42,7 @@ public class RedisService {
      * @date 2018/8/9  7:18
      * @from JDK 1.8
      */
-    public <T> boolean get(String key, T value) {
+    public <T> boolean set(String key, T value) {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
