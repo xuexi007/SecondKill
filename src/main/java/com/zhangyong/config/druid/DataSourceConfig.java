@@ -21,7 +21,7 @@ import java.util.Properties;
 
 /**
  * <p>ClassName:  </p>
- * <p>Description: </p>
+ * <p>Description: 数据源配置 </p>
  * <p>Company: http://www.shopin.net</p>
  *
  * @author zhangyong@shopin.cn

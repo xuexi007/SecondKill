@@ -26,6 +26,7 @@ import java.util.HashMap;
 @Aspect
 @Configuration
 public class TransactionConfig {
+    //事务超时时间待深究
     private static final int TX_METHOD_TIMEOUT = 5;
     private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.zhangyong.service.*.*(..))";
 

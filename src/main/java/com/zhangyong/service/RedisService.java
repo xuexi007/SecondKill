@@ -1,6 +1,7 @@
 package com.zhangyong.service;
 
 import com.alibaba.fastjson.JSON;
+import com.zhangyong.config.redis.KeyPrefix;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
@@ -22,11 +23,12 @@ public class RedisService {
     JedisPool jedisPool;
 
 
-    public <T> T get(String key, Class<T> clazz) {
+    public <T> T get(KeyPrefix prefix, String key, Class<T> clazz) {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            String str = jedis.get(key);
+            String realKey = prefix.getPrefix() + key;
+            String str = jedis.get(realKey);
             T t = stringToBean(str, clazz);
             return t;
         } finally {

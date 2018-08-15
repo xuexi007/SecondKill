@@ -30,7 +30,7 @@ public class RedisController {
     @ResponseBody
     public ResultBean<Boolean> redisSet() {
         boolean set = redisService.set("1", "zhangyong");
-        return new ResultBean<>(set);
+        return new ResultBean<Boolean>(set);
     }
 
     @RequestMapping("/redis/get")
