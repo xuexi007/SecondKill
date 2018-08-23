@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 /**
  * <p>ClassName: 事务配置 </p>
- * <p>Description: </p>
+ * <p>Description: TODO Spring事务整理 </p>
  * <p>Company: http://www.shopin.net</p>
  *
  * @author zhangyong@shopin.cn
@@ -27,7 +27,7 @@ import java.util.HashMap;
 @Configuration
 public class TransactionConfig {
     //事务超时时间待深究
-    private static final int TX_METHOD_TIMEOUT = 5;
+    private static final int TX_METHOD_TIMEOUT = 500;
     private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.zhangyong.service.*.*(..))";
 
     @Autowired
@@ -44,6 +44,7 @@ public class TransactionConfig {
         RuleBasedTransactionAttribute requiredTx = new RuleBasedTransactionAttribute();
         readOnlyTx.setRollbackRules(Collections.singletonList(new RollbackRuleAttribute(Exception.class)));
         readOnlyTx.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+        //设置超时时间;
         readOnlyTx.setTimeout(TX_METHOD_TIMEOUT);
         HashMap<String, TransactionAttribute> txMap = new HashMap<>();
         txMap.put("get*", readOnlyTx);

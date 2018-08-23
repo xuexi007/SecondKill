@@ -2,7 +2,7 @@ package com.zhangyong.config.redis;
 
 /**
  * <p>ClassName:  通用前缀 </p>
- * <p>Description: </p>
+ * <p>Description:  各个模块的区分</p>
  * <p>Company: http://www.shopin.net</p>
  *
  * @author zhangyong@shopin.cn

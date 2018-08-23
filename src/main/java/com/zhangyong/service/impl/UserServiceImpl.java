@@ -1,12 +1,17 @@
 package com.zhangyong.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.zhangyong.config.redis.KeyPrefix;
 import com.zhangyong.domain.User;
 import com.zhangyong.persistence.UserMapper;
+import com.zhangyong.service.RedisService;
 import com.zhangyong.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 

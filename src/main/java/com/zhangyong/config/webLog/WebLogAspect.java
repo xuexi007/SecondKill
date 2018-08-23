@@ -27,7 +27,7 @@ public class WebLogAspect extends BaseAspect {
 
     protected ThreadLocal<Long> logStartTime = new ThreadLocal<>();
 
-    @Pointcut("execution(public * com.zhangyong.*Controller.*(..)) && !execution(public * com.zhangyong..Controller.*(..))")
+    @Pointcut("execution(public * com.zhangyong.controller.*Controller.*(..)) && !execution(public * com.zhangyong..Controller.*(..))")
     public void webLog() {
 
     }

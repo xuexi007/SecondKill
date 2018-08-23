@@ -23,6 +23,15 @@ public class User implements Serializable {
     Integer age;
     String gender;
 
+    public User() {
+    }
+
+    public User(Integer id, String username, Integer age) {
+        this.id = id;
+        this.username = username;
+        this.age = age;
+    }
+
     public Integer getId() {
         return id;
     }
