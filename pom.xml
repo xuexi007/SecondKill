@@ -15,7 +15,7 @@
     <groupId>com.zhangyong</groupId>
     <artifactId>SecondKill</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>SecondKill</name>
 
     <properties>
