@@ -25,7 +25,7 @@ public class MD5Util {
     }
 
     //加密盐值;
-    private static final String salt = "iloveconghua";
+    private static final String salt = "ilovemyself";
 
     //输入转密 ，第一层加密
     public static String inputPassToFormPass(String inputPass) {
@@ -54,8 +54,6 @@ public class MD5Util {
     }
 
     public static void main(String[] args) {
-//        System.out.println(inputPassToFormPass("123456"));
-//        System.out.println(formPassToDBPass(inputPassToFormPass("123456"), "1a2b3c4d"));
-        System.out.println(inputPassToDbPass("123456", salt));
+        System.out.println(inputPassToFormPass("123456"));
     }
 }

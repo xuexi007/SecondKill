@@ -31,7 +31,7 @@ public class RedisController {
     @RequestMapping("/redis/set")
     @ResponseBody
     public ResultBean<Boolean> redisSet() {
-        User user = new User(1, "赵葱花", 26);
+        User user = new User(1, "我静", 18);
         // key：Userkey:id1 确保不同的模块key是不一样的;
         boolean set = redisService.set(UserKey.getById, 1 + "", user);
         return new ResultBean<Boolean>(set);

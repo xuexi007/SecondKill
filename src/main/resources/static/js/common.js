@@ -4,4 +4,4 @@ function g_showLoading(){
 	return idx;
 }
 //salt
-var g_passsword_salt="iloveconghua"
+var g_passsword_salt="ilovemyself"

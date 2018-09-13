@@ -2,7 +2,9 @@ package com.zhangyong.service.impl;
 
 import com.zhangyong.domain.SecondKillUser;
 import com.zhangyong.persistence.SecondKillUserDao;
+import com.zhangyong.result.CodeMsg;
 import com.zhangyong.service.SecondKillUserService;
+import com.zhangyong.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +26,10 @@ public class SecondKillUserServiceImpl implements SecondKillUserService {
     @Override
     public SecondKillUser getById(long id) {
         return secondKillUserDao.getById(id);
+    }
+
+    @Override
+    public CodeMsg login(LoginVo loginVo) {
+        return null;
     }
 }

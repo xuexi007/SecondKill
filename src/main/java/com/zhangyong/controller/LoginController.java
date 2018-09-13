@@ -29,11 +29,26 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     SecondKillUserService secondKillUserService;
-    @RequestMapping("/to_login")
+
+    /**
+     * @param null
+     * @auther zhangyong@shopin.cn
+     * @desc 登录页展示;
+     * @date 2018/9/13  7:52
+     * @from JDK 1.8
+     */
+    @RequestMapping("")
     public String toLogin() {
         return "login";
     }
 
+    /**
+     * @param loginVo
+     * @auther zhangyong@shopin.cn
+     * @desc 登录操作
+     * @date 2018/9/13  7:52
+     * @from JDK 1.8
+     */
     @RequestMapping("/doLogin")
     @ResponseBody
     public ResultBean<Boolean> doLogin(LoginVo loginVo) {
