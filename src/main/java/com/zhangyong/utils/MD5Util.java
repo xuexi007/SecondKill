@@ -29,13 +29,14 @@ public class MD5Util {
 
     //输入转密 ，第一层加密
     public static String inputPassToFormPass(String inputPass) {
-        String str = salt.charAt(0) + salt.charAt(2) + inputPass + salt.charAt(5) + salt.charAt(4) + "";
+        String str = "" + salt.charAt(0) + salt.charAt(2) + inputPass + salt.charAt(5) + salt.charAt(4);
+        System.out.println(str);
         return md5(str);
     }
 
     // 第二层加密
     public static String formPassToDBPass(String formPass, String salt) {
-        String str = salt.charAt(0) + salt.charAt(2) + formPass + salt.charAt(5) + salt.charAt(4) + "";
+        String str = "" + salt.charAt(0) + salt.charAt(2) + formPass + salt.charAt(5) + salt.charAt(4);
         return md5(str);
     }
 

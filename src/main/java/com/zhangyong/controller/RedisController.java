@@ -2,7 +2,7 @@ package com.zhangyong.controller;
 
 import com.zhangyong.config.redis.key.UserKey;
 import com.zhangyong.domain.User;
-import com.zhangyong.result.ResultBean;
+import com.zhangyong.result.Result;
 import com.zhangyong.service.UserService;
 import com.zhangyong.service.impl.RedisServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +30,17 @@ public class RedisController {
 
     @RequestMapping("/redis/set")
     @ResponseBody
-    public ResultBean<Boolean> redisSet() {
+    public Result<Boolean> redisSet() {
         User user = new User(1, "我静", 18);
         // key：Userkey:id1 确保不同的模块key是不一样的;
         boolean set = redisService.set(UserKey.getById, 1 + "", user);
-        return new ResultBean<Boolean>(set);
+        return new Result<Boolean>(set);
     }
 
     @RequestMapping("/redis/get")
     @ResponseBody
-    public ResultBean<User> redisGet() {
+    public Result<User> redisGet() {
         User user = redisService.get(UserKey.getById, "" + 1, User.class);
-        return new ResultBean<User>(user);
+        return new Result<User>(user);
     }
 }

@@ -1,7 +1,7 @@
 package com.zhangyong.controller;
 
 import com.zhangyong.result.CodeMsg;
-import com.zhangyong.result.ResultBean;
+import com.zhangyong.result.Result;
 import com.zhangyong.service.SecondKillUserService;
 import com.zhangyong.utils.ValidateUtils;
 import com.zhangyong.vo.LoginVo;
@@ -51,21 +51,23 @@ public class LoginController {
      */
     @RequestMapping("/doLogin")
     @ResponseBody
-    public ResultBean<Boolean> doLogin(LoginVo loginVo) {
+    public Result<Boolean> doLogin(LoginVo loginVo) {
         logger.info(loginVo.toString());
         String inputPassword = loginVo.getPassword();
         String mobile = loginVo.getMobile();
         if (StringUtils.isEmpty(inputPassword)) {
-            return ResultBean.error(CodeMsg.PASSWORD_EMPTY);
+            return Result.error(CodeMsg.PASSWORD_EMPTY);
         }
         if (StringUtils.isEmpty(mobile)) {
-            return ResultBean.error(CodeMsg.MOBILE_EMPTY);
+            return Result.error(CodeMsg.MOBILE_EMPTY);
         }
         if (!ValidateUtils.isMobile(mobile)) {
-            return ResultBean.error(CodeMsg.MOBILE_ERROR);
+            return Result.error(CodeMsg.MOBILE_ERROR);
         }
-        secondKillUserService.login(loginVo);
-        return null;
+        CodeMsg codeMsg = secondKillUserService.login(loginVo);
+        if (codeMsg.getCode() == 0) {
+            return Result.success(true);
+        }
+        return Result.error(codeMsg);
     }
-
 }

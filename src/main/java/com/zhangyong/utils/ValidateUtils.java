@@ -25,6 +25,7 @@ public class ValidateUtils {
             return false;
         }
         Matcher matcher = mobile_pattern.matcher(src);
+        System.out.println(matcher.matches());
         return matcher.matches();
     }
 }
