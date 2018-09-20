@@ -34,13 +34,13 @@ public class RedisController {
         User user = new User(1, "我静", 18);
         // key：Userkey:id1 确保不同的模块key是不一样的;
         boolean set = redisService.set(UserKey.getById, 1 + "", user);
-        return new Result<Boolean>(set);
+        return Result.success(set);
     }
 
     @RequestMapping("/redis/get")
     @ResponseBody
     public Result<User> redisGet() {
         User user = redisService.get(UserKey.getById, "" + 1, User.class);
-        return new Result<User>(user);
+        return Result.success(user);
     }
 }

@@ -37,7 +37,7 @@ public class LoginController {
      * @date 2018/9/13  7:52
      * @from JDK 1.8
      */
-    @RequestMapping("")
+    @RequestMapping("to_login")
     public String toLogin() {
         return "login";
     }
@@ -49,7 +49,7 @@ public class LoginController {
      * @date 2018/9/13  7:52
      * @from JDK 1.8
      */
-    @RequestMapping("/doLogin")
+    @RequestMapping("/do_Login")
     @ResponseBody
     public Result<Boolean> doLogin(LoginVo loginVo) {
         logger.info(loginVo.toString());
@@ -66,8 +66,11 @@ public class LoginController {
         }
         CodeMsg codeMsg = secondKillUserService.login(loginVo);
         if (codeMsg.getCode() == 0) {
+            logger.info("登录成功,服务端返回信息为:" + Result.success(true));
             return Result.success(true);
+        } else {
+            logger.info("登录失败,服务端返回信息为:" + Result.error(codeMsg));
+            return Result.error(codeMsg);
         }
-        return Result.error(codeMsg);
     }
 }

@@ -21,17 +21,25 @@ public class Result<T> implements Serializable {
     private int code;
     private T data;
 
-    public Result() {
-        super();
+    //成功时候的调用
+    public static <T> Result<T> success(T data) {
+        return new Result<T>(data);
     }
 
-    public Result(T data) {
+    /**
+     * 失败时候的调用
+     */
+    public static <T> Result<T> error(CodeMsg codeMsg) {
+        return new Result<T>(codeMsg);
+    }
+
+    private Result(T data) {
         this.data = data;
     }
 
-    private Result(int code,String msg){
-        this.code=code;
-        this.msg=msg;
+    private Result(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
     }
 
     private Result(CodeMsg codeMsg) {
@@ -39,14 +47,6 @@ public class Result<T> implements Serializable {
             this.code = codeMsg.getCode();
             this.msg = codeMsg.getMsg();
         }
-    }
-
-    public static <T> Result<T> success(T data) {
-        return new Result<T>(data);
-    }
-
-    public static <T> Result<T> error(CodeMsg codeMsg) {
-        return new Result<T>((T) codeMsg);
     }
 
     public String getMsg() {
@@ -71,5 +71,14 @@ public class Result<T> implements Serializable {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "msg='" + msg + '\'' +
+                ", code=" + code +
+                ", data=" + data +
+                '}';
     }
 }

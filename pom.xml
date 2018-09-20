@@ -165,6 +165,31 @@
         </dependency>
 
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <runtime.env>src/main/resources/profile-active/local</runtime.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <runtime.env>src/main/resources/profile-active/dev</runtime.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <runtime.env>src/main/resources/profile-active/prod</runtime.env>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <resources>
             <resource>

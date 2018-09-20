@@ -10,9 +10,12 @@ public class IndexController {
     @Value("${mm_url}")
     private String index;
 
+    int count = 0;
+
     @RequestMapping("/index")
     @ResponseBody
     public String index() {
-        return "index";
+        count++;
+        return count + "";
     }
 }

@@ -78,7 +78,7 @@
         //向后台传入密码为组合字符串;
         var password = md5(str);
         $.ajax({
-            url: "/login/doLogin",
+            url: "/login/do_Login",
             type: "POST",
             data: {
                 mobile: $("#mobile").val(),   
@@ -88,7 +88,7 @@
                 layer.closeAll();
                 console.log(data);
                 if (data.code == 0) {
-                    layer.msg("成功！！！！！");
+                    layer.msg("登录成功");
                 } else {
                     layer.msg(data.msg);
                 }

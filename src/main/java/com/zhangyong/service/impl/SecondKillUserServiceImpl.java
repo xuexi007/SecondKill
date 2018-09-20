@@ -1,5 +1,6 @@
 package com.zhangyong.service.impl;
 
+import com.sun.deploy.net.HttpResponse;
 import com.zhangyong.domain.SecondKillUser;
 import com.zhangyong.persistence.SecondKillUserDao;
 import com.zhangyong.result.CodeMsg;
@@ -8,6 +9,9 @@ import com.zhangyong.utils.MD5Util;
 import com.zhangyong.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 /**
  * <p>ClassName:  </p>
@@ -30,7 +34,7 @@ public class SecondKillUserServiceImpl implements SecondKillUserService {
     }
 
     @Override
-    public CodeMsg login(LoginVo loginVo) {
+    public CodeMsg login(@Valid LoginVo loginVo) {
         if (loginVo == null) {
             return CodeMsg.SERVER_ERROR;
         }
