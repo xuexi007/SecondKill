@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface SecondKillUserDao {
 
-    @Select("select * from sk_user where id = #{id}")
+    @Select("select * from s_user where id = #{id}")
     public SecondKillUser getById(@Param("id") long id);
 
 

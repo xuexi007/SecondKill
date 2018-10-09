@@ -30,7 +30,6 @@ public class MD5Util {
     //输入转密 ，第一层加密
     public static String inputPassToFormPass(String inputPass) {
         String str = "" + salt.charAt(0) + salt.charAt(2) + inputPass + salt.charAt(5) + salt.charAt(4);
-        System.out.println(str);
         return md5(str);
     }
 
@@ -49,12 +48,18 @@ public class MD5Util {
      * @from JDK 1.8
      */
     public static String inputPassToDbPass(String inputPass, String saltDB) {
+        //123456- > c713c4805e8d7025c75d62b241c85ffe
         String formPass = inputPassToFormPass(inputPass);
         String dbPass = formPassToDBPass(formPass, saltDB);
         return dbPass;
     }
 
     public static void main(String[] args) {
-        System.out.println(inputPassToFormPass("123456"));
+        System.out.println("inputPass:" + "123456");
+        String formPass = inputPassToFormPass("123456");
+        System.out.println("formPass:" + formPass);
+        String dbPass = formPassToDBPass(formPass, salt);
+        System.out.println("dbPass:" + dbPass);
+        System.out.println(inputPassToDbPass("123456", salt));
     }
 }

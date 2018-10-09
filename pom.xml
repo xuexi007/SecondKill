@@ -140,6 +140,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <!--参数校验-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -163,7 +168,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.6</version>
         </dependency>
-
     </dependencies>
 
     <profiles>

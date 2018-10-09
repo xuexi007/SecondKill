@@ -2,7 +2,6 @@ package com.zhangyong.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.zhangyong.config.redis.KeyPrefix;
-import com.zhangyong.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
@@ -18,10 +17,9 @@ import redis.clients.jedis.JedisPool;
  * @date 2018/8/20 18:21
  */
 @Service
-public class RedisServiceImpl implements RedisService {
+public class RedisServiceImpl {
     @Autowired
     JedisPool jedisPool;
-
 
     /**
      * @param prefix

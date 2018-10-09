@@ -3,7 +3,6 @@ package com.zhangyong.controller;
 import com.zhangyong.config.redis.key.UserKey;
 import com.zhangyong.domain.User;
 import com.zhangyong.result.Result;
-import com.zhangyong.service.UserService;
 import com.zhangyong.service.impl.RedisServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,30 +16,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  * @author zhangyong@shopin.cn
  * @version 1.0.0
- * @date 2018/8/8 22:43
+ * @date 2018/10/8 7:14
  */
 @Controller
-@RequestMapping("/demo")
-public class RedisController {
+public class SampleController {
 
     @Autowired
-    UserService userService;
-    @Autowired
-    RedisServiceImpl redisService;
-
-    @RequestMapping("/redis/set")
-    @ResponseBody
-    public Result<Boolean> redisSet() {
-        User user = new User(1, "我静", 18);
-        // key：Userkey:id1 确保不同的模块key是不一样的;
-        boolean set = redisService.set(UserKey.getById, 1 + "", user);
-        return Result.success(set);
-    }
+    private RedisServiceImpl redisService;
 
     @RequestMapping("/redis/get")
     @ResponseBody
     public Result<User> redisGet() {
-        User user = redisService.get(UserKey.getById, "" + 1, User.class);
+        User  user  = redisService.get(UserKey.getById, ""+1, User.class);
         return Result.success(user);
+    }
+
+    @RequestMapping("/redis/set")
+    @ResponseBody
+    public Result<Boolean> redisSet() {
+        User user = new User();
+        user.setId(1);
+        user.setUsername("1111");
+        redisService.set(UserKey.getById, "" + 1, user);
+        return Result.success(true);
     }
 }

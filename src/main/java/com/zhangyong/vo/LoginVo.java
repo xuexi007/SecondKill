@@ -1,5 +1,10 @@
 package com.zhangyong.vo;
 
+import com.zhangyong.validator.IsMobile;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * <p>ClassName:  </p>
  * <p>Description: </p>
@@ -10,7 +15,11 @@ package com.zhangyong.vo;
  * @date 2018/8/27 8:12
  */
 public class LoginVo {
+    @NotNull
+    @IsMobile
     private String mobile;
+    @NotNull
+    @Length(min = 32)
     private String password;
 
     public String getMobile() {

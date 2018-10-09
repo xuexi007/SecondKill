@@ -1,6 +1,8 @@
 package com.zhangyong;
 
-import com.zhangyong.utils.redis.ShopinRedisTemplate;
+import com.zhangyong.config.redis.key.SecondKillUserKey;
+import com.zhangyong.domain.User;
+import com.zhangyong.service.impl.RedisServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +20,4 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SecondKillApplication.class)
 public class TestRedis {
-    @Autowired
-    ShopinRedisTemplate<String> redisTemplate;
-
-    @Test
-    public void test() {
-        redisTemplate.set("233", "123");
-        System.out.println(redisTemplate.get("233"));
-    }
 }

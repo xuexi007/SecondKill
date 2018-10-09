@@ -1,8 +1,9 @@
 package com.zhangyong.service;
 
 import com.zhangyong.domain.SecondKillUser;
-import com.zhangyong.result.CodeMsg;
 import com.zhangyong.vo.LoginVo;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>ClassName:  </p>
@@ -15,6 +16,5 @@ import com.zhangyong.vo.LoginVo;
  */
 public interface SecondKillUserService {
     public SecondKillUser getById(long id);
-
-    public CodeMsg login(LoginVo loginVo);
+    public boolean login(HttpServletResponse response, LoginVo loginVo);
 }

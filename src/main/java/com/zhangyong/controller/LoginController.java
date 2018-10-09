@@ -1,17 +1,17 @@
 package com.zhangyong.controller;
 
-import com.zhangyong.result.CodeMsg;
 import com.zhangyong.result.Result;
 import com.zhangyong.service.SecondKillUserService;
-import com.zhangyong.utils.ValidateUtils;
 import com.zhangyong.vo.LoginVo;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 /**
  * <p>ClassName:  </p>
@@ -49,28 +49,11 @@ public class LoginController {
      * @date 2018/9/13  7:52
      * @from JDK 1.8
      */
-    @RequestMapping("/do_Login")
+    @RequestMapping("/do_login")
     @ResponseBody
-    public Result<Boolean> doLogin(LoginVo loginVo) {
+    public Result<Boolean> doLogin(HttpServletResponse response, @Valid LoginVo loginVo) {
         logger.info(loginVo.toString());
-        String inputPassword = loginVo.getPassword();
-        String mobile = loginVo.getMobile();
-        if (StringUtils.isEmpty(inputPassword)) {
-            return Result.error(CodeMsg.PASSWORD_EMPTY);
-        }
-        if (StringUtils.isEmpty(mobile)) {
-            return Result.error(CodeMsg.MOBILE_EMPTY);
-        }
-        if (!ValidateUtils.isMobile(mobile)) {
-            return Result.error(CodeMsg.MOBILE_ERROR);
-        }
-        CodeMsg codeMsg = secondKillUserService.login(loginVo);
-        if (codeMsg.getCode() == 0) {
-            logger.info("登录成功,服务端返回信息为:" + Result.success(true));
-            return Result.success(true);
-        } else {
-            logger.info("登录失败,服务端返回信息为:" + Result.error(codeMsg));
-            return Result.error(codeMsg);
-        }
+        secondKillUserService.login(response,loginVo);
+        return Result.success(true);
     }
 }
