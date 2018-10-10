@@ -31,7 +31,7 @@ import javax.validation.Valid;
 public class SecondKillUserServiceImpl implements SecondKillUserService {
 
     private static final Logger logger = LoggerFactory.getLogger(SecondKillUserServiceImpl.class);
-    private static final String COOKIE_NAME_TOKEN = "token";
+    public static final String COOKIE_NAME_TOKEN = "token";
     @Autowired
     private SecondKillUserDao secondKillUserDao;
 
